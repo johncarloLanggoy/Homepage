@@ -1,0 +1,408 @@
+:root {
+  --primary-bg: #7968b3;
+  --header-bg: #1b3188;
+  --nav-btn-bg: #5a4dba;
+  --nav-btn-hover: #7b69e3;
+  --inventory-box-bg: #c4b1ee;
+  --inventory-box-hover: #a595d9;
+  --container-bg: #bfa5e3;
+  --section-title-bg: #0c2d68;
+  --popup-bg: #c8b6ff;
+  --text-white: #fff;
+  --text-dark: #1b1b1b;
+}
+
+/* ===== Global Styles ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  background-color: var(--primary-bg); 
+  font-family: Arial, sans-serif; 
+  color: var(--text-white); 
+}
+
+/* ===== Header & Navigation ===== */
+header {
+  background-color: var(--header-bg);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo { 
+  font-weight: bold; 
+  font-size: 1.2rem; 
+}
+
+nav {
+  display: flex; 
+  gap: 10px; 
+}
+
+.nav-btn {
+  background-color: var(--nav-btn-bg);
+  color: var(--text-white);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: var(--nav-btn-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--nav-btn-hover);
+}
+
+.nav-btn.active {
+  background-color: var(--nav-btn-hover) !important;
+  box-shadow: 0 0 12px var(--nav-btn-hover);
+  font-weight: 700;
+  transform: scale(1.05);
+}
+
+/* ===== Inventory Section ===== */
+main.inventory-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+  padding: 20px 40px;
+}
+
+main.inventory-main h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.inventory-container {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  column-gap: 15px;
+  row-gap: 15px;
+  justify-content: center;
+}
+
+.inventory-box {
+  width: 100%;
+  height: 150px;
+  background-color: var(--inventory-box-bg);
+  color: var(--text-dark);
+  padding: 20px;
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.inventory-box:hover { 
+  background-color: var(--inventory-box-hover); 
+}
+
+/* ===== Container & Sections ===== */
+.container {
+  background-color: var(--container-bg);
+  margin: 30px auto;
+  padding: 20px;
+  width: min(90%, 900px);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  color: black;
+}
+
+.section-title {
+  background-color: var(--section-title-bg);
+  color: var(--text-white);
+  font-weight: bold;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* ===== Tables ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th {
+  width: 180px;
+  background-color: #e0d9e8;
+  text-align: left;
+  padding: 10px 8px;
+}
+
+td {
+  padding: 10px 8px;
+}
+
+/* ===== Inputs & Buttons ===== */
+input, select {
+  padding: 6px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.confirm-btn {
+  background-color: #6a5acd;
+  color: var(--text-white);
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.confirm-btn:hover { 
+  background-color: #5848b8; 
+}
+
+/* ===== Popup ===== */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: var(--popup-bg);
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  max-width: 90%;
+  position: relative;
+  color: black;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ===== View & Dashboard Tables ===== */
+.view-container table,
+.dashboard-container table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.view-container th,
+.view-container td,
+.dashboard-container th,
+.dashboard-container td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+.view-container th,
+.dashboard-container th {
+  background-color: var(--section-title-bg);
+  color: var(--text-white);
+  text-align: left;
+}
+
+.view-container tbody tr:nth-child(even) { background-color: #f3eaff; }
+.view-container tbody tr:hover { background-color: #d0c4f7; }
+
+/* ===== Login/Register ===== */
+#auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #7968b3, #5a4dba);
+}
+
+#auth .auth-box {
+  background: var(--container-bg);
+  padding: 35px 30px;
+  border-radius: 12px;
+  width: 320px;
+  max-width: 90%;
+  color: black;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 0.6s forwards;
+}
+
+#auth .auth-box h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  color: var(--section-title-bg);
+  font-weight: bold;
+}
+
+#auth .auth-box input {
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+#auth .auth-box input:focus {
+  border-color: var(--section-title-bg);
+  box-shadow: 0 0 5px var(--section-title-bg);
+}
+
+#auth .auth-box button {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--section-title-bg);
+  color: var(--text-white);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#auth .auth-box button:hover {
+  background-color: var(--nav-btn-hover);
+  transform: scale(1.02);
+}
+
+#auth .auth-box p {
+  margin-top: 15px;
+  cursor: pointer;
+  color: var(--section-title-bg);
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+#auth .auth-box p:hover {
+  color: var(--nav-btn-hover);
+  text-decoration: underline;
+}
+
+.message-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+}
+.message-box.success { background-color: #28a745; }
+.message-box.error { background-color: #dc3545; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Animation ===== */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 400px) {
+  #auth .auth-box {
+    width: 90%;
+    padding: 25px 20px;
+  }
+}
+
+/* Optional: Small responsive tweak */
+@media (max-width: 400px) {
+  #auth .auth-box {
+    width: 90%;
+    padding: 25px 20px;
+  }
+}
+
+/* ===== Additional Responsive Tweaks ===== */
+
+/* Inventory Section: Stack boxes on small screens */
+@media (max-width: 600px) {
+  .inventory-container {
+    grid-template-columns: 1fr; /* 1 column instead of 2 */
+    row-gap: 10px;
+  }
+}
+
+/* Tables: Make scrollable horizontally on small screens */
+@media (max-width: 600px) {
+  .container table,
+  .view-container table,
+  .dashboard-container table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Buttons and Inputs: Full width and smaller padding on tiny screens */
+@media (max-width: 400px) {
+  input, select, .confirm-btn, .nav-btn {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* Header navigation: Stack vertically on very small screens */
+@media (max-width: 500px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Login/Register box: Smaller width for extra tiny screens */
+@media (max-width: 350px) {
+  #auth .auth-box {
+    width: 95%;
+    padding: 20px;
+  }
+}

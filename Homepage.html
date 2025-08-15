@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="css/style.css" rel="stylesheet" />
+
+<title>Leshley's Eatery</title>
+<style>
+</style>
+</head>
+<body>
+<!-- LOGIN / REGISTER -->
+<div id="auth">
+  <div class="auth-box" id="loginBox">
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p onclick="toggleAuth()">Don't have an account? Register</p>
+  </div>
+  <div class="auth-box" id="registerBox" style="display:none;">
+    <h2>Register</h2>
+    <input type="text" id="regUsername" placeholder="Username" />
+    <input type="password" id="regPassword" placeholder="Password" />
+    <input type="text" id="regPhone" placeholder="Phone Number" />
+    <input type="text" id="regAddress" placeholder="Address" />
+    <button onclick="register()">Register</button>
+    <p onclick="toggleAuth()">Already have an account? Login</p>
+  </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="mainSite" style="display:none;">
+<header>
+  <div class="logo">Leshley's Eatery</div>
+  <nav>
+    <a href="#" class="nav-btn active" onclick="showSection('dashboards', event)">Dashboard</a>
+    <a href="#" class="nav-btn" onclick="showSection('inventory', event)">Inventory</a>
+    <a href="#" class="nav-btn" onclick="showSection('addorder', event)">Add Order</a>
+    <a href="#" class="nav-btn" onclick="showSection('vieworder', event)">View Orders</a>
+    <a href="#" id="logoutBtn" class="nav-btn">Logout</a>
+  </nav>
+</header>
+
+<!-- Dashboard -->
+<div id="dashboards" class="dashboard-container container">
+  <table>
+    <tr>
+      <th>Order ID</th><th>Product Name</th><th>Category</th><th>Status</th>
+    </tr>
+    <tr><td>001</td><td>Tapsilog</td><td>Rice Meal</td><td>Available</td></tr>
+    <tr><td>002</td><td>Longsilog</td><td>Rice Meal</td><td>Available</td></tr>
+    <tr><td>003</td><td>Maling silog</td><td>Rice Meal</td><td>Available</td></tr>
+    <tr><td>004</td><td>Hotsilog</td><td>Rice Meal</td><td>Available</td></tr>
+    <tr><td>005</td><td>Silog</td><td>Rice Meal</td><td>Available</td></tr>
+    <tr><td>006</td><td>Bangus silog</td><td>Rice Meal</td><td>Available</td></tr>
+    <tr><td>007</td><td>Porksilog</td><td>Rice Meal</td><td>Available</td></tr>
+  </table>
+</div>
+
+<!-- Inventory -->
+<main id="inventory" class="inventory-main" style="display:none;">
+  <h2>Quick view of the inventory</h2>
+  <div class="inventory-container">
+    <div class="inventory-box">Numbers of Order (On-going)</div>
+    <div class="inventory-box">Total Customer</div>
+    <div class="inventory-box">Total Sales Till Date</div>
+    <div class="inventory-box">Total Amount Collected</div>
+  </div>
+</main>
+
+<!-- Add Order -->
+<div id="addorder" class="container" style="display:none;">
+  <div class="section-title">Customer Details</div>
+  <table>
+    <tr><th><label for="custName">Customer Name:</label></th><td><input type="text" id="custName" placeholder="Enter Customer Name" /></td></tr>
+    <tr><th><label for="custContact">Contact:</label></th><td><input type="tel" id="custContact" placeholder="Enter Contact Number" /></td></tr>
+  </table>
+  <div class="section-title">Order Details</div>
+  <table>
+    <tr><th><label for="orderDate">Order Date:</label></th><td><input type="date" id="orderDate" /></td></tr>
+    <tr><th><label for="foodSelect">Select Foods:</label></th><td>
+      <select id="foodSelect">
+        <option value="">-- Select Food --</option>
+        <option value="Tapsilog">Tapsilog</option>
+        <option value="Longsilog">Longsilog</option>
+        <option value="Maling silog">Maling silog</option>
+        <option value="Hotsilog">Hotsilog</option>
+        <option value="Silog">Silog</option>
+        <option value="Bangus silog">Bangus silog</option>
+        <option value="Porksilog">Porksilog</option>
+      </select>
+    </td></tr>
+    <tr><th><label for="orderQty">Number Of Orders:</label></th><td><input type="number" id="orderQty" min="1" placeholder="How Many Orders" /></td></tr>
+  </table>
+  <button id="confirmBtn" class="confirm-btn">Confirm Order</button>
+</div>
+
+<!-- View Orders -->
+<div id="vieworder" class="view-container container" style="display:none;">
+  <table>
+    <thead>
+  <tr>
+    <th>Order Date</th>
+    <th>Customer Name</th>
+    <th>Contact Number</th>
+    <th>Foods</th>
+    <th>No. Of Foods</th>
+    <th>Amount (₱)</th>
+    <th>Payment Status</th>
+    <th>Edit/Delete</th>
+  </tr>
+</thead>
+    <tbody id="ordersTableBody"></tbody>
+  </table>
+</div>
+
+<!-- Order Popup -->
+<div id="orderPopup" class="popup-overlay">
+  <div class="popup-content">
+    <span id="closePopup" class="close-btn">&times;</span>
+    <h3>Confirm Your Order</h3>
+    <p><b>Customer Name:</b> <input type="text" id="popupCustNameInput" /></p>
+    <p><b>Contact Number:</b> <input type="text" id="popupCustContactInput" /></p>
+    <p><b>Order Date:</b> <input type="date" id="popupOrderDateInput" /></p>
+    <p><b>Food:</b> 
+      <select id="popupFoodInput">
+        <option value="">-- Select Food --</option>
+        <option value="Tapsilog">Tapsilog</option>
+        <option value="Longsilog">Longsilog</option>
+        <option value="Maling silog">Maling silog</option>
+        <option value="Hotsilog">Hotsilog</option>
+        <option value="Silog">Silog</option>
+        <option value="Bangus silog">Bangus silog</option>
+        <option value="Porksilog">Porksilog</option>
+      </select>
+    </p>
+    <p><b>Quantity:</b> <input type="number" id="popupQtyInput" min="1" /></p>
+    <button id="finalConfirmBtn" class="confirm-btn" style="width:100%; margin-top:15px;">Confirm & Proceed</button>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
